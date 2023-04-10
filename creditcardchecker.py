@@ -1,8 +1,8 @@
 def main():
     credit_card_number = input("Enter a credit card number: ").strip()
-    if check_input_validity(credit_card_number):
+    if is_input_valid(credit_card_number):
         card_type = check_card_type(credit_card_number)
-        if card_type and luhns_algorithm(credit_card_number):
+        if card_type and is_luhn_valid(credit_card_number):
             print(f"{card_type}")
         else:
             print("INVALID")
@@ -10,7 +10,7 @@ def main():
         print("please enter a valid credit card number")
 
 
-def check_input_validity(number):
+def is_input_valid(number):
     return number.isdigit() and 13 <= len(number) <= 16
 
 
@@ -27,7 +27,7 @@ def check_card_type(number):
         return "AMEX"
 
 
-def luhns_algorithm(number):
+def is_luhn_valid(number):
     number_list = [int(i) for i in number]
     reversed_number_list = number_list[::-1]
     reversed_number_list[1::2] = [i*2 for i in reversed_number_list[1::2]]
